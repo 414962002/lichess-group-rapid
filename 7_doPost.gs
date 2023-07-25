@@ -53,8 +53,8 @@ function doPost(e) {
       const values = [dateTime, userName, rapidGames, rapidWin, rapidLoss, rapidDraw, rapidRating, rapidProgrs];
       const range = sheet.getRange('A2:H2');
 
-      for (let i = 0; i < values.length; i++) {
-        range.offset(0, i).setValue(values[i]);
+      for (let i = 0; i < values.length && i < range.getNumColumns(); i++) {
+        range.getCell(1, i + 1).setValue(values[i]);
       }
     }
 
