@@ -27,35 +27,31 @@ function doPost(e) {
 
     function getLichessToSpreadsheet() {
       let sheet = SpreadsheetApp.getActiveSheet();
-      let lichessLink = "https://lichess.org/api/user" + data;
-      let response = UrlFetchApp.fetch(lichessLink);
+      // let lichessLink = "https://lichess.org/api/user" + data;
+      let lichessRapidLink = 'https://lichess.org/api/user' + data + '/perf/rapid';
+      let response = UrlFetchApp.fetch(lichessRapidLink);
 
       // main let for get ndjson info
-      let ndjson = response.getContentText();
-      let parseNDJSON = JSON.parse(ndjson);
+      let dataJSON = response.getContentText();
+      let parseJSON = JSON.parse(dataJSON);
 
       // date and time actual
       let dateTime = [[new Date().toLocaleString('ru')]];
 
       // parseNDJSON
-      let userName = [parseNDJSON.username];
-      let rapidGames = [parseNDJSON.perfs.rapid.games];
-      let countWinH = [parseNDJSON.count.winH];
-      let lossWinH = [parseNDJSON.count.lossH];
-      let drawWinH = [parseNDJSON.count.drawH];
-      let rapidRating = [parseNDJSON.perfs.rapid.rating];
-      let rapidProgrs = [parseNDJSON.perfs.rapid.prog];
-
-      // part of createdAt
-      let createdAt = [parseNDJSON.createdAt];
-      let humanReadableDate = new Date(parseInt(createdAt));
-      let dateStr = humanReadableDate.getFullYear() + "/" + (humanReadableDate.getMonth() + 1) + "/" + humanReadableDate.getDate()
+      let userName = [parseJSON.user.name];
+      let rapidGames = [parseJSON.stat.count.all];
+      let rapidWin = [parseJSON.stat.count.win];
+      let rapidLoss = [parseJSON.stat.count.loss];
+      let rapidDraw = [parseJSON.stat.count.draw];
+      let rapidRating = [parseJSON.perf.glicko.rating];
+      let rapidProgrs = [parseJSON.perf.progress];
 
       // the retrieved data is written to 
       // a specific range in the active sheet 
       // of the spreadsheet.
-      const values = [dateTime, userName, rapidGames, countWinH, lossWinH, drawWinH, rapidRating, rapidProgrs, dateStr];
-      const range = sheet.getRange('a2:i2');
+      const values = [dateTime, userName, rapidGames, rapidWin, rapidLoss, rapidDraw, rapidRating, rapidProgrs];
+      const range = sheet.getRange('A2:H2');
 
       for (let i = 0; i < values.length; i++) {
         range.offset(0, i).setValue(values[i]);
@@ -69,7 +65,7 @@ function doPost(e) {
     switch (data) {
       case data:
         getLichessToSpreadsheet();
-        sendText(chatId, data + ` :`, keyboard_text);
+        sendText(chatId, data + ` :`, keyboard_text_rapid);
         SpreadsheetApp.getActiveSheet().getRange('B2').setValue(data);
         break;
 
@@ -92,15 +88,15 @@ function doPost(e) {
         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `🧐`);
         sendText(chatIdCb, 'Всего игр - ' + index(3));
         break;
-      case 'countWinH':
+      case 'rapidWin':
         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `🤓`);
         sendText(chatIdCb, 'Выиграно - ' + index(4));
         break;
-      case 'lossWinH':
+      case 'rapidLoss':
         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `😜`);
         sendText(chatIdCb, 'Проиграно - ' + index(5));
         break;
-      case 'drawWinH':
+      case 'rapidDraw':
         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `🤗`);
         sendText(chatIdCb, 'Ничьих - ' + index(6));
         break;
