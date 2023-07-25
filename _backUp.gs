@@ -62,7 +62,7 @@
 //       }
 //     }
 
-//     //If the value matches the 'data' variable, 
+//     // If the value matches the 'data' variable, 
 //     // the getLichessToSpreadsheet function is called, 
 //     // a text is sent to the chat identified by 'from.id', 
 //     // and a value is set in the 'B2' cell of the active sheet
@@ -89,31 +89,31 @@
 //     // an answer is sent to the callback query, and a text is sent to the chat
 //     switch (cbData) {
 //       case 'rapidGames':
-//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `${index(3)}`);
+//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `🧐`);
 //         sendText(chatIdCb, 'Всего игр - ' + index(3));
 //         break;
 //       case 'countWinH':
-//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `${index(4)}`);
+//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `🤓`);
 //         sendText(chatIdCb, 'Выиграно - ' + index(4));
 //         break;
 //       case 'lossWinH':
-//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `${index(5)}`);
+//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `😜`);
 //         sendText(chatIdCb, 'Проиграно - ' + index(5));
 //         break;
 //       case 'drawWinH':
-//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `${index(6)}`);
+//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `🤗`);
 //         sendText(chatIdCb, 'Ничьих - ' + index(6));
 //         break;
 //       case 'rapidRating':
-//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `${index(7)}`);
+//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `🤔`);
 //         sendText(chatIdCb, 'Рейтинг - ' + index(7));
 //         break;
 //       case 'rapidProgrs':
-//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `${index(8)}`);
+//         sendAnswerCallbackQuery(chatIdCb, callback_query_id, `😯`);
 //         sendText(chatIdCb, 'Прогресс - ' + index(8));
 //         break; I
 //       default:
-//         sendText(chatIdCb, `🥹🥹`);
+//         sendText(chatIdCb, `🐒`);
 //     }
 //   }
 // }
