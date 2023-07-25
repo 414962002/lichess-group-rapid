@@ -62,7 +62,7 @@ function doPost(e) {
       }
     }
 
-    //If the value matches the 'data' variable, 
+    // If the value matches the 'data' variable, 
     // the getLichessToSpreadsheet function is called, 
     // a text is sent to the chat identified by 'from.id', 
     // and a value is set in the 'B2' cell of the active sheet
